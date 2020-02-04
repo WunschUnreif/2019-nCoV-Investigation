@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>2019-nCoV Investigation</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.staticfile.org/foundation/5.5.3/css/foundation.min.css">
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdn.staticfile.org/foundation/5.5.3/js/foundation.min.js"></script>
+        <script src="https://cdn.staticfile.org/foundation/5.5.3/js/vendor/modernizr.js"></script>
+
+        <style>
+            [data-magellan-expedition], [data-magellan-expedition-clone] {
+                padding: 0;
+            }
+        </style>
+    </head>
+    
+    <body>
+
+        <div data-magellan-expedition="fixed">
+            <nav class="top-bar" data-topbar>
+                <ul class="title-area">
+                    <li class="name active">
+                        <h1><a href="/index.html">新型冠状病毒肺炎疫情调查</a></h1>
+                    </li>
+                    <li class="toggle-topbar menu-icon">
+                        <a href="#"><span></span></a>
+                    </li>
+                </ul>
+
+                <section class="top-bar-section" id="bar-section">
+                    <ul class="left">
+                        <li class="divider"></li>
+                        <li ><a href="/index.html">主页</a></li>
+                        <li class="divider"></li>
+                        <li class="active"><a href="/investigate.html">开始调查</a></li>
+                        <li class="divider"></li>
+                        <li ><a href="/result-verify.html">统计结果</a></li>
+                        <li class="divider"></li>
+                    </ul>
+                </section>
+            </nav>
+        </div>
+
+        <!-- 标题区域 -->
+        <div class="row" style="margin-top: 0em;"> 
+            <div class="medium-12 columns">
+                <div class="panel">
+                    <h1> 新型冠状病毒肺炎疫情调查 </h1>
+                    <hr>
+                    <p> <span style="font-size: medium;">调查对象：</span>
+                        <span class="label round" style="font-size: medium;"> SJTU </span> 
+                        <span class="label round" style="font-size: medium;">F1703302 </span> 
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!--调查表单-->
+        <div class="row">
+            <div class="medium-12 columns">
+                <div class="panel">
+                    <div class="row"> 
+                        <div class="medium-12 columns">
+                            <h2> 调查内容 </h2>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="row collapse prefix-radius">
+                        <div class="medium-3 small-4 columns">
+                            <span class="prefix">姓名</span>
+                        </div>
+                        <div class="medium-9 small-8 columns">
+                            <input type="text" name="invs-name">
+                        </div>
+                    </div>
+
+                    <div class="row collapse prefix-radius">
+                        <div class="medium-3 small-4 columns">
+                            <span class="prefix">学号</span>
+                        </div>
+                        <div class="medium-9 small-8 columns">
+                            <input type="number" name="invs-id">
+                        </div>
+                    </div>
+
+                    <div class="row collapse prefix-radius">
+                        <div class="medium-3 small-4 columns">
+                            <span class="prefix">健康状况</span>
+                        </div>
+                        <div class="medium-9 small-8 columns">
+                            <select name="invs-health">
+                                <option value="0" selected>健康</option>
+                                <option value="1">有发热症状</option>
+                                <option value="2">无发热，但有感冒症状</option>
+                                <option value="3">患有其他传染病</option>
+                                <option value="4">患有其他非传染病</option>
+                                <option value="5">新型肺炎疑似病例</option>
+                                <option value="6">新型肺炎确诊病例</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row collapse prefix-radius">
+                        <div class="medium-3 small-6 columns">
+                            <span class="prefix">是否曾接触确诊病例</span>
+                        </div>
+                        <div class="medium-9 small-6 columns">
+                            <select name="invs-contact">
+                                <option value="0" selected>否</option>
+                                <option value="1">是</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row collapse prefix-radius">
+                        <div class="medium-3 small-6 columns">
+                            <span class="prefix">是否返沪或返校</span>
+                        </div>
+                        <div class="medium-9 small-6 columns">
+                            <select name="invs-return">
+                                <option value="0" selected>不在上海</option>
+                                <option value="1">在上海，不在学校</option>
+                                <option value="2">已返校</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row collapse prefix-radius">
+                        <div class="medium-3 small-6 columns">
+                            <span class="prefix">目前是否在湖北</span>
+                        </div>
+                        <div class="medium-9 small-6 columns">
+                            <select name="invs-quarantine">
+                                <option value="0" selected>否</option>
+                                <option value="1">是</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="medium-12 columns">
+                            <ul class="button-group stack" style="margin-bottom: 1em;">
+                                <li>
+                                    <button type="button" class="button radius" onclick="invesSubmit()">提交</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src = "script/inves.js"></script>
+        <script>
+            $(document).ready(function() {
+                $(document).foundation();
+
+                $("input[name='invs-name']").val(getCookie("stu_name"));
+                $("input[name='invs-id']").val(getCookie("stu_id"));                
+            });
+        </script>
+
+    </body>
+</html>

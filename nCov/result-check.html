@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>2019-nCoV Investigation</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.staticfile.org/foundation/5.5.3/css/foundation.min.css">
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdn.staticfile.org/foundation/5.5.3/js/foundation.min.js"></script>
+        <script src="https://cdn.staticfile.org/foundation/5.5.3/js/vendor/modernizr.js"></script>
+
+        <style>
+            [data-magellan-expedition], [data-magellan-expedition-clone] {
+                padding: 0;
+            }
+        </style>
+    </head>
+    
+    <body>
+
+        <div data-magellan-expedition="fixed">
+            <nav class="top-bar" data-topbar>
+                <ul class="title-area">
+                    <li class="name active">
+                        <h1><a href="/index.html">新型冠状病毒肺炎疫情调查</a></h1>
+                    </li>
+                    <li class="toggle-topbar menu-icon">
+                        <a href="#"><span></span></a>
+                    </li>
+                </ul>
+
+                <section class="top-bar-section" id="bar-section">
+                    <ul class="left">
+                        <li class="divider"></li>
+                        <li ><a href="/index.html">主页</a></li>
+                        <li class="divider"></li>
+                        <li ><a href="/investigate.html">开始调查</a></li>
+                        <li class="divider"></li>
+                        <li class="active"><a href="/result-verify.html">统计结果</a></li>
+                        <li class="divider"></li>
+                    </ul>
+                </section>
+            </nav>
+        </div>
+
+        <!-- 标题区域 -->
+        <div class="row" style="margin-top: 0em;"> 
+            <div class="medium-12 columns">
+                <div class="panel radius">
+                    <h1> 统计结果查看 </h1>
+                    <hr>
+                    <p> <span style="font-size: medium;">调查对象：</span>
+                        <span class="label round" style="font-size: medium;"> SJTU </span> 
+                        <span class="label round" style="font-size: medium;">F1703302 </span> 
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!--身份核验表单-->
+        <div class="row">
+            <div class="medium-12 columns">
+                <div class="panel">
+                    <div class="row"> 
+                        <div class="medium-12 columns">
+                            <h2> 身份核验 </h2>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row collapse prefix-radius postfix-radius"> 
+                        <div class="medium-2 small-3 columns">
+                            <span class="prefix">密码</span>
+                        </div>
+                        <div class="medium-8 small-6 columns">
+                            <input type="text" name="result-passwd">
+                        </div>
+                        <div class="medium-2 small-3 columns">
+                            <button type="button" class="button postfix" onclick="resultVerifyCheckpwd()">验证</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <script src="/script/md5.js"></script>
+        <script src="/script/result-verify.js?id=4"></script>
+        <script>
+            $(document).ready(function() {
+                $(document).foundation();
+            });
+        </script>
+
+    </body>
+</html>

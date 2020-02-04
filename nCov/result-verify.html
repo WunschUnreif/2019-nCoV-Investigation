@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>2019-nCoV Investigation</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://cdn.staticfile.org/foundation/5.5.3/css/foundation.min.css">
+        <link rel="stylesheet" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+
+        <link rel="stylesheet" href="css/foundation-datepicker.css">
+
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdn.staticfile.org/foundation/5.5.3/js/foundation.min.js"></script>
+        <script src="https://cdn.staticfile.org/foundation/5.5.3/js/vendor/modernizr.js"></script>
+
+        <script src="js/foundation-datepicker.js"></script>
+        <script src="js/foundation-datepicker.zh-CN.js"></script>
+
+        <style>
+            [data-magellan-expedition], [data-magellan-expedition-clone] {
+                padding: 0;
+            }
+        </style>
+    </head>
+    
+    <body>
+
+        <div data-magellan-expedition="fixed">
+            <nav class="top-bar" data-topbar>
+                <ul class="title-area">
+                    <li class="name active">
+                        <h1><a href="/index.html">新型冠状病毒肺炎疫情调查</a></h1>
+                    </li>
+                    <li class="toggle-topbar menu-icon">
+                        <a href="#"><span></span></a>
+                    </li>
+                </ul>
+
+                <section class="top-bar-section" id="bar-section">
+                    <ul class="left">
+                        <li class="divider"></li>
+                        <li ><a href="/index.html">主页</a></li>
+                        <li class="divider"></li>
+                        <li ><a href="/investigate.html">开始调查</a></li>
+                        <li class="divider"></li>
+                        <li class="active"><a href="/result-verify.html">统计结果</a></li>
+                        <li class="divider"></li>
+                    </ul>
+                </section>
+            </nav>
+        </div>
+
+        <!-- 标题区域 -->
+        <div class="row" style="margin-top: 0em;"> 
+            <div class="medium-12 columns">
+                <div class="panel radius">
+                    <h1> 统计结果查看 </h1>
+                    <hr>
+                    <p> <span style="font-size: medium;">调查对象：</span>
+                        <span class="label round" style="font-size: medium;"> SJTU </span> 
+                        <span class="label round" style="font-size: medium;">F1703302 </span> 
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!--身份核验表单-->
+        <div class="row" id="verifyDiv">
+            <div class="medium-12 columns">
+                <div class="panel radius">
+                    <div class="row"> 
+                        <div class="medium-12 columns">
+                            <h2> 身份核验 </h2>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row collapse prefix-radius postfix-radius"> 
+                        <div class="medium-2 small-3 columns">
+                            <span class="prefix">密码</span>
+                        </div>
+                        <div class="medium-8 small-6 columns">
+                            <input type="text" name="result-passwd">
+                        </div>
+                        <div class="medium-2 small-3 columns">
+                            <button type="button" class="button postfix" onclick="resultVerifyCheckpwd()">验证</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--结果显示区域-->
+        <div class="row" id="resultDiv" hidden>
+            <div class="medium-12 columns">
+                <div class="panel radius">
+                    <div class="row"> 
+                        <div class="medium-12 columns">
+                            <h2> 统计结果 </h2>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="row  collapse prefix-radius postfix-radius"> 
+                        <div class="medium-2 small-3 columns">
+                            <label class="prefix">日期</label>
+                        </div>
+                        <div class="medium-8 small-6 columns">
+                            <input type="text" id="result-date" name="result-date" placeholder="YYYY-MM-DD" onfocus="this.blur()">
+                        </div>
+                        <div class="medium-2 small-3 columns">
+                            <button type="button" class="button postfix" onclick="resultQuery()">查询</button>
+                        </div>
+                    </div>
+
+                    <div class="row" id="resultNumberDiv" hidden>
+                        <div class="medium-12 columns">
+                            <p> <span style="font-size: small;">查询到的有效记录数量：</span>
+                                <span class="label round" style="font-size: small;" id='resultNumber'> 0 </span> 
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row" id="resultTableDiv" hidden>
+                        <div class="medium-12 columns">
+                            <!-- 由JS加载 -->
+                            <div style="overflow-x: scroll;">
+                                <table id="resultTable" width="100%" style="overflow-x: hidden;">
+                                    <thead>
+                                        <tr>
+                                            <td style="text-align: center;">姓名</td>
+                                            <td style="text-align: center;">学号</td>
+                                            <td style="text-align: center;">健康状况</td>
+                                            <td style="text-align: center;">是否接触确诊病例</td>
+                                            <td style="text-align: center;">返沪返校情况</td>
+                                            <td style="text-align: center;">是否在湖北</td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <script src="/script/md5.js"></script>
+        <script src="/script/result-verify.js?id=1"></script>
+        <script src="/script/result-show.js?id=4"></script>
+        <script>
+            $(document).ready(function() {
+                $(document).foundation();
+
+                $("#result-date").fdatepicker({
+                    format : 'yyyy-mm-dd'
+                });
+
+                var query = location.search;
+                if(query.indexOf('?tmpkey=') === 0) {
+                    // 核验通过
+                    $("#verifyDiv").hide();
+                    $("#resultDiv").show();
+                }
+            });
+        </script>
+
+    </body>
+</html>
